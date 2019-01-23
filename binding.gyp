@@ -2,7 +2,7 @@
   'conditions': [
     ['OS=="win"', {
       'variables': {
-        'MAGICK_ROOT%': '<!(python get_regvalue.py)',
+        'MAGICK_ROOT%': 'deps/win/ImageMagick-7.0.8-Q16',
         # download the dll binary and check off for libraries and includes
         'OSX_VER%': "0",
       }
@@ -27,12 +27,13 @@
       "include_dirs" : [
         "<!(node -e \"require('nan')\")"
       ],
+      "library_dirs" : [ '.' ],
       "conditions": [
         ['OS=="win"', {
           "libraries": [
-            '-l<(MAGICK_ROOT)/lib/CORE_RL_magick_.lib',
             '-l<(MAGICK_ROOT)/lib/CORE_RL_Magick++_.lib',
-            '-l<(MAGICK_ROOT)/lib/CORE_RL_wand_.lib',
+            '-l<(MAGICK_ROOT)/lib/CORE_RL_MagickCore_.lib',
+            '-l<(MAGICK_ROOT)/lib/CORE_RL_MagickWand_.lib',
           ],
           'include_dirs': [
             '<(MAGICK_ROOT)/include',
